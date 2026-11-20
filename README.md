@@ -7,6 +7,10 @@ A modded Minecraft modpack designed to primarily feature the Create mod.
 - Loader: NeoForge
 - Distribution: `.mrpack` exports, published and managed on Modrinth
 
+## Documentation
+
+- [Mod Choices](docs/mod-choices.md): why each mod is in the pack, what's under consideration, and what was rejected. Kept up to date as the pack changes.
+
 ## Rules
 
 Working rules for this pack (for humans and agents alike). Added as they are agreed on.
