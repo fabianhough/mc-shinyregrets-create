@@ -1,0 +1,3 @@
+# Repo-only files: keep out of the pack index (gitignore syntax)
+README.md
+docs/
