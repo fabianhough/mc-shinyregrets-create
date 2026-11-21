@@ -154,7 +154,7 @@ Departures from the pack rules, decided case by case.
 
 | Mod | Rule | Why accepted |
 |---|---|---|
-| MezzConfig 0.7.1 (beta) | Stable only | Required by JEI and has never had a stable release on Modrinth. |
+| MezzConfig 0.7.1 (beta) | Stable only | Required by JEI and has never had a stable release on Modrinth. See [Caveats](caveats.md#jei-bundles-mezzconfig-and-modrinth-also-lists-it-as-a-separate-dependency). |
 
 Not an exception, but worth knowing: Iris's version number reads `1.8.14-beta.1`, yet its author published it on Modrinth as a release.
 
