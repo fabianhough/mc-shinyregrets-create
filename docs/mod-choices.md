@@ -166,10 +166,17 @@ Not an exception, but worth knowing: Iris's version number reads `1.8.14-beta.1`
 | Inventory Essentials | Inventory sorting (middle-click) and moving all stacks of one type. Overlaps Mouse Tweaks on shift-drag. Just Create SMP 2 runs both. Check that middle-click sorting doesn't clash with creative-mode stack copying. |
 | Create Stuff 'N Additions | **Planned for the next build** (decided 2026-11-21). Optional add-on; the preferred choice over Create Jetpack if a jetpack goes in. |
 | Create: Numismatics | Optional add-on (currency and shops). |
-| Open Parties and Claims | Claims are optional; unsure they are needed. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
-| Waystones | Optional; pending the travel design. |
-| Steam 'n' Rails | No official NeoForge 1.21.1 release. Only an unofficial NeoForge port exists (alpha); Just Create SMP 2 runs a NeoForge listing of it. |
 | Reese's Sodium Options | Not discussed yet. Sodium Extra lists it as an optional pairing (a nicer video settings screen). |
+
+### Deferred: add if needed
+Not planned for now. The servers will be small, so these aren't immediately useful; add them later if a need comes up (decided 2026-11-21).
+
+| Mod | Notes |
+|---|---|
+| Steam 'n' Rails | No official NeoForge 1.21.1 release. Only an unofficial NeoForge port exists (alpha); Just Create SMP 2 runs a NeoForge listing of it. Would need a stable-rule exception. |
+| Create: Liquid Fuel | Not yet checked on Modrinth for a NeoForge 1.21.1 stable build. |
+| Open Parties and Claims | Claims aren't needed on a small server. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
+| Waystones | Pending the travel design. |
 
 ### Candidates for categories not yet filled
 Each has a NeoForge 1.21.1 build, either checked on its own page or present in ATM10's modlist. None are decided.
