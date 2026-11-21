@@ -15,8 +15,28 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 
 ### Some Modrinth environment values are unknown to packwiz
 - **Seen:** 2026-11-21.
-- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`; the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's `client_or_server` also becomes `both`, with a warning.
+- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, Tectonic publishes `server_only_client_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's and Balm's `client_or_server` also becomes `both`, with a warning.
 - **Action:** none. Harmless for a single client-and-server pack.
+
+---
+
+## Gameplay and configuration
+
+### B key opens both the backpack and a Xaero's waypoint screen
+- **Seen:** 2026-11-21, testing v0.2.0.
+- **Detail:** Sophisticated Backpacks' open-backpack key and one of Xaero's Minimap waypoint keys both default to B.
+- **Decision:** B opens the backpack only; the Xaero's waypoint key is **unbound**.
+- **Status:** Default Options added in v0.3.0. The keybind defaults file still needs creating: in a v0.3.0 instance, unbind the Xaero's key, run `/defaultoptions saveKeys` in a world, and commit the resulting files under `config/defaultoptions/`. Use `saveKeys`, not `saveAll`, so personal graphics settings aren't shipped.
+
+### Worldgen mods are permanent per world
+- **Seen:** 2026-11-21, adding Tectonic and Terralith.
+- **Detail:** per Terralith's Modrinth page, it can't be removed from an existing world and shouldn't be added to one; start a new world. Tectonic changes terrain generation the same way. Switching between the mod and datapack versions of Terralith can also damage a world.
+- **Action:** treat these two as fixed once the server world is generated. Any future biome or worldgen mod should be decided before the server's world is created.
+
+### Terralith replaces vanilla granite, diorite and andesite blobs
+- **Seen:** 2026-11-21, from Terralith's Modrinth page.
+- **Detail:** Terralith moves those stones into dedicated cave biomes instead of scattering blobs underground. **Andesite matters for Create** (andesite alloy is early-game core), so it may be harder to find early on.
+- **Action:** none yet; watch for it in testing. If it's a problem, Terralith's config has a "Vanilla Stone Generation" option (off by default), or its official add-on Terralith: ReStoned restores the blobs.
 
 ---
 

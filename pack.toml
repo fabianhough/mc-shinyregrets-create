@@ -1,12 +1,12 @@
 name = "shinyregrets-create"
 author = "faba"
-version = "0.2.0"
+version = "0.3.0"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "fd7d2fccd93b4c98f2e6b54241fb4fa6e39aa68f3d048fb529d6b48326893ef0"
+hash = "64b06ded094411bf339266d140f928c2c23f79aa0844409451cc7457be626da7"
 
 [versions]
 minecraft = "1.21.1"

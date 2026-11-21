@@ -18,7 +18,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (51)
+## Chosen mods (54)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -53,7 +53,16 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Jade](https://modrinth.com/mod/jade) | both | Block and entity info on look-at. |
 | [AppleSkin](https://modrinth.com/mod/appleskin) | both | Hunger and saturation display. |
 | [Controlling](https://modrinth.com/mod/controlling) | client | Keybind search. |
+| [Default Options](https://modrinth.com/mod/default-options) | client | Lets the pack ship default keybinds (from `config/defaultoptions/`) without overwriting players' own settings on updates. Added to resolve the B-key conflict between Sophisticated Backpacks and Xaero's Minimap (see [Caveats](caveats.md#b-key-opens-both-the-backpack-and-a-xaeros-waypoint-screen)). |
 | [Mouse Tweaks](https://modrinth.com/mod/mouse-tweaks) | client | Inventory handling (drag, scroll and click transfers). |
+
+### World generation
+| Mod | Side | Why |
+|---|---|---|
+| [Tectonic](https://modrinth.com/mod/tectonic) | both | Terrain overhaul: continent-scale landmasses and huge mountain ranges. Ships built-in Terralith compatibility. |
+| [Terralith](https://modrinth.com/mod/terralith) | both | 95+ new biomes and reworked vanilla biomes, using only vanilla blocks. Fully compatible with the mod version of Tectonic. |
+
+Both change world generation: they need a **new world**, and Terralith can't be removed from a world once it's generated. See [Caveats](caveats.md#worldgen-mods-are-permanent-per-world).
 
 ### Client polish and immersion
 | Mod | Side | Why |
@@ -128,6 +137,8 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [CreativeCore](https://modrinth.com/mod/creativecore) | both | AmbientSounds |
 | [Fzzy Config](https://modrinth.com/mod/fzzy-config) | both | Simply Swords, Simply Tooltips |
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
+| [Lithostitched](https://modrinth.com/mod/lithostitched) | both | Tectonic, Terralith |
+| [Balm](https://modrinth.com/mod/balm) | both | Default Options |
 
 Bundled inside other jars (no separate file):
 - **Flywheel, Ponder, Registrate:** inside Create.
@@ -135,6 +146,8 @@ Bundled inside other jars (no separate file):
 - **MezzConfig 0.6.6:** inside JEI, in addition to the standalone MezzConfig above. NeoForge loads the newest copy present.
 - **XaeroLib:** inside both Xaero's Minimap and Xaero's World Map.
 - **Wrench Wrapper:** inside Ok Zoomer.
+- **Apollib:** inside Tectonic (1.1.6) and Lithostitched (1.2.0). NeoForge loads the newer copy.
+- **Kuma API:** inside Balm.
 - **Cloth Config 15.0.128:** inside Freecam, in a folder NeoForge doesn't load bundled mods from. The standalone Cloth Config above covers it.
 
 ### Dependency tree
@@ -179,6 +192,10 @@ Kotlin for Forge
 Cloth Config ──────┬── BetterF3
 playerAnimator ────┴── Better Combat      (requires both)
 
+Lithostitched ──┬── Tectonic
+                └── Terralith
+
+Balm ────────── Default Options
 CreativeCore ── AmbientSounds
 Searchables ─── Controlling
 MezzConfig ──── JEI
@@ -216,7 +233,7 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 
 ### Candidates for categories not yet filled
 Each has a NeoForge 1.21.1 build, either checked on its own page or present in ATM10's modlist. None are decided.
-- **Terrain and biomes:** Tectonic, Terralith, Regions Unexplored, Oh The Biomes We've Gone.
+- **Terrain and biomes:** Regions Unexplored, Oh The Biomes We've Gone (both biome mods; check Tectonic/Terralith compatibility first).
 - **Structures and dungeons:** YUNG's suite (Better Dungeons, Better Mineshafts, Desert Temples, Strongholds, Nether Fortresses, End Island), When Dungeons Arise, Dungeon Crawl, Integrated Dungeons and Structures, Dungeons and Taverns, Repurposed Structures, Towns and Towers, Villages & Pillages, Deeper and Darker.
 - **Weapons and gear (no magic):** Artifacts, Relics.
 - **Mobs and bosses:** L_Ender's Cataclysm; Alex's Mobs (unofficial 1.21.1 port only).
