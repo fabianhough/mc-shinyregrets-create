@@ -164,7 +164,7 @@ Not an exception, but worth knowing: Iris's version number reads `1.8.14-beta.1`
 | Mod | Notes |
 |---|---|
 | Inventory Essentials | Inventory sorting (middle-click) and moving all stacks of one type. Overlaps Mouse Tweaks on shift-drag. Just Create SMP 2 runs both. Check that middle-click sorting doesn't clash with creative-mode stack copying. |
-| Create Stuff 'N Additions | Optional add-on; the preferred choice over Create Jetpack if a jetpack goes in. |
+| Create Stuff 'N Additions | **Planned for the next build** (decided 2026-11-21). Optional add-on; the preferred choice over Create Jetpack if a jetpack goes in. |
 | Create: Numismatics | Optional add-on (currency and shops). |
 | Open Parties and Claims | Claims are optional; unsure they are needed. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
 | Waystones | Optional; pending the travel design. |
