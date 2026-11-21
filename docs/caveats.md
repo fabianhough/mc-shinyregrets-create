@@ -15,7 +15,7 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 
 ### Some Modrinth environment values are unknown to packwiz
 - **Seen:** 2026-11-21.
-- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, Tectonic publishes `server_only_client_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's, Balm's and spark's `client_or_server` also becomes `both`, with a warning.
+- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's, Balm's and spark's `client_or_server` also becomes `both`, with a warning.
 - **Action:** none. Harmless for a single client-and-server pack.
 
 ---
@@ -37,15 +37,11 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
   - **]:** Xaero's (open settings) and Sophisticated Core (transfer to inventory, inside storage screens).
 - **Action:** none yet. If any of these get in the way, rebind and regenerate the file.
 
-### Worldgen mods are permanent per world
-- **Seen:** 2026-11-21, adding Tectonic and Terralith.
-- **Detail:** per Terralith's Modrinth page, it can't be removed from an existing world and shouldn't be added to one; start a new world. Tectonic changes terrain generation the same way. Switching between the mod and datapack versions of Terralith can also damage a world.
-- **Action:** treat these two as fixed once the server world is generated. Any future biome or worldgen mod should be decided before the server's world is created.
-
-### Terralith replaces vanilla granite, diorite and andesite blobs
-- **Seen:** 2026-11-21, from Terralith's Modrinth page.
-- **Detail:** Terralith moves those stones into dedicated cave biomes instead of scattering blobs underground. **Andesite matters for Create** (andesite alloy is early-game core), so it may be harder to find early on.
-- **Action:** none yet; watch for it in testing. If it's a problem, Terralith's config has a "Vanilla Stone Generation" option (off by default), or its official add-on Terralith: ReStoned restores the blobs.
+### Worldgen mods need deciding before the server world
+- **Seen:** 2026-11-21, while Tectonic and Terralith were in the pack (0.3.0 to 0.4.0; removed before any server world existed).
+- **Detail:** terrain and biome mods shape chunks as they generate. Per Terralith's Modrinth page, it can't be removed from an existing world and shouldn't be added to one. Adding a worldgen mod later leaves a visible seam between old and new terrain; removing one can break the world.
+- **Action:** decide worldgen mods before the server's world is created. Structure mods are gentler: they generally only affect newly generated chunks.
+- **If Terralith returns:** it moves granite, diorite and andesite into dedicated cave biomes, which can make andesite (core to early Create) harder to find. Its config option "Vanilla Stone Generation" or the add-on Terralith: ReStoned restores the vanilla blobs.
 
 ---
 
