@@ -15,7 +15,7 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 
 ### Some Modrinth environment values are unknown to packwiz
 - **Seen:** 2026-11-21.
-- **Detail:** Xaero's Minimap and World Map publish `client_only_server_optional`; the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's `client_or_server` also becomes `both`, with a warning.
+- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`; the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's `client_or_server` also becomes `both`, with a warning.
 - **Action:** none. Harmless for a single client-and-server pack.
 
 ---
@@ -24,9 +24,23 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 
 ### JEI bundles MezzConfig, and Modrinth also lists it as a separate dependency
 - **Seen:** 2026-11-21.
-- **Detail:** JEI 19.64.0.455 ships MezzConfig 0.6.6 inside its jar. Its Modrinth listing also marks MezzConfig as required, so packwiz adds the standalone MezzConfig 0.7.1 (beta). NeoForge loads the newest copy present, so 0.7.1 is used, not the copy JEI was built with. MezzConfig has never had a stable release, which makes it the pack's one beta (logged under [Exceptions](mod-choices.md#exceptions)).
+- **Detail:** JEI 19.64.0.455 ships MezzConfig 0.6.6 inside its jar. Its Modrinth listing also marks MezzConfig as required, so packwiz adds the standalone MezzConfig 0.7.1 (beta). NeoForge loads the newest copy present, so 0.7.1 is used, not the copy JEI was built with. MezzConfig has never had a stable release, so it's one of the pack's beta exceptions (logged under [Exceptions](mod-choices.md#exceptions)).
 - **Earlier testing:** the pre-packwiz Prism setup ran JEI 19.70.0.467 (a beta) with MezzConfig 0.6.9. The pack now uses stable JEI 19.64.0.455, so JEI behaviour may differ slightly from that testing.
 - **Action:** kept, per the working policy. If JEI's config screen misbehaves, try removing the standalone MezzConfig (`packwiz remove mezzconfig`) so JEI's bundled copy is used.
+
+### Freecam bundles Cloth Config where NeoForge doesn't look
+- **Seen:** 2026-11-21.
+- **Detail:** Freecam's Modrinth listing marks Cloth Config as embedded. The copy (15.0.128) sits in `META-INF/jars/`, Fabric's location for bundled mods; NeoForge loads bundled mods from `META-INF/jarjar/`. Freecam's jar doesn't declare Cloth Config as required.
+- **Action:** none. The standalone Cloth Config (pulled in by BetterF3 and Better Combat) is present anyway. If those two are ever removed and Freecam's settings screen breaks, this is why.
+
+---
+
+## Unofficial ports
+
+### Steam 'n' Rails is a community NeoForge port
+- **Seen:** 2026-11-21.
+- **Detail:** the official Steam 'n' Rails (by IThundxr) has no 1.21.1 build. The pack uses "Steam 'n' Rails Neoforge" (`create-steam-n-rails-1.21.1`, by PoppyBlossom), a separate Modrinth project. Just Create SMP 2 runs it without problems. Pinned to stable 0.2.1; the 0.3.0 line is beta.
+- **Action:** none. Worth watching for an official 1.21.1 release, which would be the one to switch to. Bug reports go to the port, not the official project.
 
 ---
 
@@ -41,6 +55,8 @@ Modrinth's dependency list (what packwiz uses) doesn't always match what the jar
 | Create Deco | No dependencies | Requires Create |
 | Create: Dragons Plus | (pulled in as a dependency) | Requires Create |
 | Create: Vibrant Vaults | Requires Create, pinned to 6.0.2 | Accepts the pack's Create 6.0.10 |
+| Create: Liquid Fuel | No dependencies | Requires Create |
+| Create Stuff 'N Additions | No dependencies | No dependencies (still needs Create to do anything) |
 
 ---
 

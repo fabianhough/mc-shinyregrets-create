@@ -5,7 +5,7 @@ Why each mod is in the pack. Minecraft 1.21.1, NeoForge 21.1.267. Last updated 2
 ## Principles
 - **Pure NeoForge.** No Sinytra Connector or Fabric API layers (Continuity was rejected for this reason). Mods that bundle Forgified Fabric API modules internally (Sodium) are fine.
 - **Why NeoForge 1.21.1.** Create's active development branch is `mc1.21.1/dev`; its 1.20.1 branch has been quiet since Nov 2025, and Create Aeronautics is NeoForge 1.21.1 only. Fabric 1.20.1 was evaluated and rejected: Create Fabric is a community port that trails (6.0.8.1 vs 6.0.10), and several add-ons have no Fabric build.
-- **Vanilla++.** Vanilla plus performance, visual and UI mods and cohesive vanilla-style additions, with Create as the central content mod.
+- **Vanilla++.** Vanilla plus performance, visual and UI mods and cohesive vanilla-style additions, with Create as the central content mod. "Cohesive" means balanced and in keeping with vanilla, not power-creep: Better Combat and Simply Swords fit; something like Apotheosis, which makes gear and progression overpowered, does not.
 - **Community-proven and polished.** Prefer mods with a long track record that work cleanly together.
 - **No magic system.** Ars Nouveau and Ars Creo were dropped (decided 2026-11-20).
 - **Aeronautics is a separate integration effort**, not part of this pack's current build.
@@ -18,7 +18,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (38)
+## Chosen mods (51)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -33,6 +33,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 | [EntityCulling](https://modrinth.com/mod/entityculling) | client | Entity rendering. **Under retest:** earlier it dropped FPS from about 120 to about 100 (about 80 looking at a sheep) with shaders on. |
 | [Colorwheel](https://modrinth.com/mod/colorwheel) | client | Bridges Create's Flywheel renderer and Iris shaders. Works with Complementary and Bliss. Do not combine with Iris Flywheel Compat (Colorwheel declares it incompatible on Modrinth). |
 | [Colorwheel Patcher](https://modrinth.com/mod/colorwheel-patcher) | client | Shader-pack patches for Colorwheel. |
+| [Clumps](https://modrinth.com/mod/clumps) | both | Merges nearby XP orbs into one entity, cutting lag around XP farms (Create: Enchantment Industry makes a lot of XP). |
 
 ### Shader packs (bundled)
 | Shader pack | Side | Why |
@@ -54,6 +55,22 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Controlling](https://modrinth.com/mod/controlling) | client | Keybind search. |
 | [Mouse Tweaks](https://modrinth.com/mod/mouse-tweaks) | client | Inventory handling (drag, scroll and click transfers). |
 
+### Client polish and immersion
+| Mod | Side | Why |
+|---|---|---|
+| [Freecam](https://modrinth.com/mod/freecam) | client | Detached camera for inspecting builds and contraptions. Added on purpose; it can see through walls, which is accepted for a friends server. |
+| [Ok Zoomer](https://modrinth.com/mod/ok-zoomer) | client | Zoom key. |
+| [AmbientSounds](https://modrinth.com/mod/ambientsounds) | client | Biome and environment ambience. |
+| [Sound Physics Remastered](https://modrinth.com/mod/sound-physics-remastered) | both | Reverb and sound occlusion. Beta-only on NeoForge 1.21.1; accepted as an exception given its track record (see [Exceptions](#exceptions)). |
+| [BetterF3](https://modrinth.com/mod/betterf3) | client | Cleaner, configurable F3 debug screen. |
+| [3D Skin Layers](https://modrinth.com/mod/3dskinlayers) | client | Renders the outer skin layer in 3D. |
+
+### Combat
+| Mod | Side | Why |
+|---|---|---|
+| [Better Combat](https://modrinth.com/mod/better-combat) | both | Weapon-specific attack animations and combos. Changes how melee feels without making gear overpowered, so it stays vanilla++. |
+| [Simply Swords](https://modrinth.com/mod/simply-swords) | both | More weapon types and unique loot weapons. Integrates with Better Combat. |
+
 ### Gameplay and quality of life (vanilla++)
 | Mod | Side | Why |
 |---|---|---|
@@ -67,6 +84,7 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Lootr](https://modrinth.com/mod/lootr) | both | Per-player loot chests, so every player gets their own loot from each chest. |
 | [Farmer's Delight](https://modrinth.com/mod/farmers-delight) | both | Food and cooking. The first content mod in the pack, in keeping with the vanilla feel. |
 | [Easy Villagers](https://modrinth.com/mod/easy-villagers) | both | Villagers as items. |
+| [Chimes](https://modrinth.com/mod/chimes) | both | Wind chimes. Added because it's cute. |
 
 ### Create: core and integrations
 | Mod | Side | Why |
@@ -77,6 +95,9 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Create: Enchantment Industry](https://modrinth.com/mod/create-enchantment-industry) | both | Create-path enchanting and XP. Pinned to the 2.4.x stable line; 2.5.x has been beta-only since Sept 2026. |
 | [Create Slice & Dice](https://modrinth.com/mod/slice-and-dice) | both | Automates Farmer's Delight with Create. |
 | [Create Cobblestone](https://modrinth.com/mod/create-cobblestone) | both | Cobblestone generation. |
+| [Create Stuff 'N Additions](https://modrinth.com/mod/create-stuff-additions) | both | Create-style gear and items; the preferred choice over Create Jetpack for a jetpack. |
+| [Steam 'n' Rails (NeoForge port)](https://modrinth.com/mod/create-steam-n-rails-1.21.1) | both | More train parts and track types. The official Steam 'n' Rails has no 1.21.1 build; this is the community NeoForge port, which Just Create SMP 2 runs without problems. Pinned to the stable 0.2.1; 0.3.0 is beta. |
+| [Create: Liquid Fuel](https://modrinth.com/mod/create-liquid-fuel) | both | Liquid fuels for blaze burners. Used by Just Create SMP 2 without problems. |
 
 ### Create: decor and building
 | Mod | Side | Why |
@@ -97,17 +118,24 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 |---|---|---|
 | [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) | both | Sophisticated Backpacks, Sophisticated Storage, and both Create integrations |
 | [Create: Dragons Plus](https://modrinth.com/mod/create-dragons-plus) | both | Create: Enchantment Industry |
-| [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) | both | Create Slice & Dice |
-| [Architectury API](https://modrinth.com/mod/architectury-api) | both | Create Cobblestone (listed on Modrinth; the jar itself doesn't declare it) |
+| [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) | both | Create Slice & Dice, Fzzy Config |
+| [Architectury API](https://modrinth.com/mod/architectury-api) | both | Simply Swords, Simply Tooltips; also Create Cobblestone (listed on Modrinth; that jar doesn't declare it) |
 | [BaguetteLib](https://modrinth.com/mod/baguettelib) | both | Gravestone x Curios API Compat |
 | [Searchables](https://modrinth.com/mod/searchables) | client | Controlling |
 | [MezzConfig](https://modrinth.com/mod/mezzconfig) | both | JEI (beta-only; see [Exceptions](#exceptions)) |
+| [Cloth Config API](https://modrinth.com/mod/cloth-config) | both | BetterF3, Better Combat |
+| [playerAnimator](https://modrinth.com/mod/playeranimator) | both | Better Combat (beta-only; see [Exceptions](#exceptions)) |
+| [CreativeCore](https://modrinth.com/mod/creativecore) | both | AmbientSounds |
+| [Fzzy Config](https://modrinth.com/mod/fzzy-config) | both | Simply Swords, Simply Tooltips |
+| [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
 
 Bundled inside other jars (no separate file):
 - **Flywheel, Ponder, Registrate:** inside Create.
 - **Forgified Fabric API modules:** inside Sodium.
 - **MezzConfig 0.6.6:** inside JEI, in addition to the standalone MezzConfig above. NeoForge loads the newest copy present.
 - **XaeroLib:** inside both Xaero's Minimap and Xaero's World Map.
+- **Wrench Wrapper:** inside Ok Zoomer.
+- **Cloth Config 15.0.128:** inside Freecam, in a folder NeoForge doesn't load bundled mods from. The standalone Cloth Config above covers it.
 
 ### Dependency tree
 
@@ -119,6 +147,8 @@ Create  (bundles Flywheel, Ponder, Registrate)
 │   └── Create: Enchantment Industry      (also requires Create)
 ├── Create Slice & Dice                   (also requires Kotlin for Forge)
 ├── Create Cobblestone                    (also requires Architectury API)
+├── Steam 'n' Rails (NeoForge port)
+├── Create: Liquid Fuel
 ├── Create: Design n' Decor
 ├── Copycats+
 ├── Create Deco
@@ -140,11 +170,21 @@ Curios API ─┐
 GraveStone ─┼── Gravestone x Curios API Compat
 BaguetteLib ┘
 
-Searchables ── Controlling
-MezzConfig ─── JEI
+Kotlin for Forge
+└── Fzzy Config
+    ├── Simply Tooltips                   (also requires Architectury API)
+    │   └── Simply Swords                 (also requires Fzzy Config, Architectury API)
+    └── Simply Swords
+
+Cloth Config ──────┬── BetterF3
+playerAnimator ────┴── Better Combat      (requires both)
+
+CreativeCore ── AmbientSounds
+Searchables ─── Controlling
+MezzConfig ──── JEI
 ```
 
-Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Xaero's, Jade, AppleSkin, Mouse Tweaks, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers) stands alone.
+Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
 
 ---
 
@@ -155,23 +195,21 @@ Departures from the pack rules, decided case by case.
 | Mod | Rule | Why accepted |
 |---|---|---|
 | MezzConfig 0.7.1 (beta) | Stable only | Required by JEI and has never had a stable release on Modrinth. See [Caveats](caveats.md#jei-bundles-mezzconfig-and-modrinth-also-lists-it-as-a-separate-dependency). |
+| playerAnimator 2.0.4 (beta) | Stable only | Required by Better Combat; no stable NeoForge 1.21.1 build exists (decided 2026-11-21). |
+| Sound Physics Remastered 1.5.2 (beta) | Stable only | No stable NeoForge 1.21.1 build. Accepted given its track record (57M downloads); client-side sound only, easy to remove (decided 2026-11-21). |
 
-Not an exception, but worth knowing: Iris's version number reads `1.8.14-beta.1`, yet its author published it on Modrinth as a release.
+Not exceptions, but worth knowing: Iris (`1.8.14-beta.1`) and Ok Zoomer (`10.0.0-beta.13`) have "beta" in their version numbers, yet their authors published them on Modrinth as releases.
 
 ---
 
 ## Under consideration
-| Mod | Notes |
-|---|---|
-| Create Stuff 'N Additions | **Planned for the next build** (decided 2026-11-21). Optional add-on; the preferred choice over Create Jetpack if a jetpack goes in. |
+Nothing right now.
 
 ### Approved, add when needed
 Already vetted as OK to add; not in the pack yet only because they aren't needed now (the servers will be small). If a need comes up, add them to the pack for everyone, without re-litigating whether they belong (decided 2026-11-21).
 
 | Mod | Notes |
 |---|---|
-| Steam 'n' Rails | No official NeoForge 1.21.1 release. Only an unofficial NeoForge port exists (alpha); Just Create SMP 2 runs a NeoForge listing of it. Would need a stable-rule exception. |
-| Create: Liquid Fuel | Not yet checked on Modrinth for a NeoForge 1.21.1 stable build. |
 | Open Parties and Claims | Claims aren't needed on a small server. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
 | Waystones | Pending the travel design. |
 | Reese's Sodium Options | A nicer video settings screen for Sodium; Sodium Extra lists it as an optional pairing. |
@@ -180,7 +218,7 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 Each has a NeoForge 1.21.1 build, either checked on its own page or present in ATM10's modlist. None are decided.
 - **Terrain and biomes:** Tectonic, Terralith, Regions Unexplored, Oh The Biomes We've Gone.
 - **Structures and dungeons:** YUNG's suite (Better Dungeons, Better Mineshafts, Desert Temples, Strongholds, Nether Fortresses, End Island), When Dungeons Arise, Dungeon Crawl, Integrated Dungeons and Structures, Dungeons and Taverns, Repurposed Structures, Towns and Towers, Villages & Pillages, Deeper and Darker.
-- **Weapons and gear (no magic):** Better Combat, Simply Swords, Artifacts, Relics.
+- **Weapons and gear (no magic):** Artifacts, Relics.
 - **Mobs and bosses:** L_Ender's Cataclysm; Alex's Mobs (unofficial 1.21.1 port only).
 - **Ideas from Just Create SMP 2:** FTB Chunks, Vanilla Backport and Copper Age Backport for vanilla catch-up, KubeJS and LootJS for scripting (needed for found-versus-made gear), Simple Voice Chat.
 
