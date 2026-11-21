@@ -1,0 +1,105 @@
+# ShinyRegrets: Create - sample server deployment
+# itzg/minecraft-server + itzg/mc-backup sidecar
+#
+# Placeholders to replace: anything in <ANGLE_BRACKETS>.
+# Secret: create ./secrets/rcon_password.txt (one line, a long random string).
+#   e.g.  mkdir -p secrets && openssl rand -base64 32 > secrets/rcon_password.txt && chmod 600 secrets/rcon_password.txt
+
+services:
+  mc:
+    # Pin Java 21: MC 1.21.1 / NeoForge 21.1 target Java 21. The image's `latest`/`stable` tags are Java 25.
+    image: itzg/minecraft-server:java21
+    container_name: shinyregrets-mc
+    restart: unless-stopped
+    tty: true          # interactive console: docker attach / docker exec -i shinyregrets-mc rcon-cli
+    stdin_open: true
+    # Docker's default is 10s, too short for a modded world to save. Pairs with the server's own stop handling.
+    stop_grace_period: 2m
+    ports:
+      - "25565:25565"  # game port; RCON (25575) stays internal to the compose network
+    environment:
+      # --- Core system ---
+      EULA: "TRUE"
+      TZ: "<YOUR_TIMEZONE>"   # e.g. America/New_York
+      MEMORY: "8G"            # sized for up to 4 players; 6G is probably enough in general (e.g. 2 players)
+      USE_AIKAR_FLAGS: "true"
+      RCON_PASSWORD_FILE: /run/secrets/rcon_password   # shared with the backup sidecar
+
+      # --- Modpack (Modrinth) ---
+      TYPE: MODRINTH
+      MODRINTH_MODPACK: shinyregrets-create
+      # Our versions are published as beta; by default itzg only picks the latest *release*.
+      MODRINTH_MODPACK_VERSION_TYPE: beta
+      # Until the Modrinth project is approved (or to pin an exact build), use a local .mrpack instead:
+      #   MODRINTH_MODPACK: /modpacks/shinyregrets-create-0.5.0.mrpack
+      # and uncomment the /modpacks volume below. (File name must end in .mrpack.)
+      # If a client-only mod ever crashes the server, skip it without changing the pack:
+      #   MODRINTH_EXCLUDE_FILES: |
+      #     <substring-of-jar-name>
+
+      # --- World / server properties ---
+      MOTD: "ShinyRegrets: Create"
+      DIFFICULTY: normal
+      ALLOW_FLIGHT: "true"    # avoids "flying is not enabled" kicks from jetpacks (Create Stuff 'N Additions) and other modded movement
+      SPAWN_PROTECTION: 0     # let non-op friends build near spawn
+      # VIEW_DISTANCE: 10       # tuning knobs; vanilla defaults are 10/10.
+      # SIMULATION_DISTANCE: 10 # lower reduces tick load, but Create machines outside it stop running.
+
+      # --- Players / access (friends only) ---
+      MAX_PLAYERS: 4
+      ONLINE_MODE: "true"
+      ENABLE_WHITELIST: "true"   # implied by setting WHITELIST; explicit for clarity
+      WHITELIST: |-
+        <player1>
+        <player2>
+      ENFORCE_WHITELIST: "true"  # kick anyone removed from the whitelist immediately (itzg also sets this automatically with a whitelist)
+      OPS: |-
+        <your_username>
+    secrets:
+      - rcon_password
+    volumes:
+      - <HOST_PATH_TO_SERVER_DATA>:/data
+      # - <HOST_PATH_TO_MRPACK_DIR>:/modpacks:ro
+
+  backups:
+    image: itzg/mc-backup
+    container_name: shinyregrets-backups
+    restart: unless-stopped
+    depends_on:
+      mc:
+        condition: service_healthy  # itzg image has a built-in healthcheck
+    environment:
+      TZ: "<YOUR_TIMEZONE>"
+      RCON_HOST: mc
+      RCON_PASSWORD_FILE: /run/secrets/rcon_password
+      INITIAL_DELAY: 0              # already waits for mc to be healthy
+      BACKUP_INTERVAL: "6h"         # or use CRON_SCHEDULE, e.g. "0 4 * * *" for daily at 4am
+      PAUSE_IF_NO_PLAYERS: "true"   # skip backups while nobody has been online
+      PRUNE_BACKUPS_DAYS: 14
+      BACKUP_METHOD: tar
+      TAR_COMPRESS_METHOD: zstd     # faster than the default gzip
+      LINK_LATEST: "true"           # backups/latest.* symlink for easy restores
+      # Default EXCLUDES already skips *.jar, cache, logs, *.tmp: mods are re-downloaded from the pack.
+    secrets:
+      - rcon_password
+    volumes:
+      - <HOST_PATH_TO_SERVER_DATA>:/data:ro
+      - <HOST_PATH_TO_BACKUPS>:/backups
+
+  # Optional "init" container: restores the newest backup into /data, but only when /data is empty.
+  # Uncomment it (and the depends_on block under mc) to make disaster recovery automatic.
+  # restore-backup:
+  #   image: itzg/mc-backup
+  #   restart: "no"
+  #   entrypoint: restore-tar-backup
+  #   volumes:
+  #     - <HOST_PATH_TO_SERVER_DATA>:/data
+  #     - <HOST_PATH_TO_BACKUPS>:/backups:ro
+  # ...and under mc:
+  #   depends_on:
+  #     restore-backup:
+  #       condition: service_completed_successfully
+
+secrets:
+  rcon_password:
+    file: ./secrets/rcon_password.txt
