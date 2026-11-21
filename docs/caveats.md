@@ -24,9 +24,18 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 
 ### B key opens both the backpack and a Xaero's waypoint screen
 - **Seen:** 2026-11-21, testing v0.2.0.
-- **Detail:** Sophisticated Backpacks' open-backpack key and one of Xaero's Minimap waypoint keys both default to B.
-- **Decision:** B opens the backpack only; the Xaero's waypoint key is **unbound**.
-- **Status:** Default Options added in v0.3.0. The keybind defaults file still needs creating: in a v0.3.0 instance, unbind the Xaero's key, run `/defaultoptions saveKeys` in a world, and commit the resulting files under `config/defaultoptions/`. Use `saveKeys`, not `saveAll`, so personal graphics settings aren't shipped.
+- **Detail:** Sophisticated Backpacks' open-backpack key and Xaero's Minimap "New Waypoint" key (`gui.xaero_new_waypoint`) both default to B.
+- **Decision:** B opens the backpack only; "New Waypoint" is **unbound**.
+- **Status:** fixed in v0.3.1. The defaults ship in `config/defaultoptions/keybindings.txt`, generated in Prism with `/defaultoptions saveKeys` (not `saveAll`, so personal graphics settings aren't shipped). Default Options applies these as the defaults; players' own rebinds persist across updates.
+- **Maintenance:** the file records a default for every key that existed when it was saved. Keys from mods added later use their own defaults until the file is regenerated, and a mod changing one of its default keys won't take effect while the file pins the old one. Regenerate the same way when keybinds need changing.
+
+### Other keys bound more than once (untested)
+- **Seen:** 2026-11-21, in the saved keybindings file.
+- **Detail:** most duplicates are context-specific and fine (JEI keys only act in its overlay, Create's Alt keys in their own menus, Backpacks' toggle-upgrade keys use Alt). Possible real overlaps:
+  - **C:** Ok Zoomer (zoom), Sophisticated Backpacks (inventory interaction), Easy Villagers (cycle trades) and vanilla's save-toolbar activator (creative only).
+  - **G:** Curios (open accessories) and Simply Tooltips (cycle tooltip tab, only while a tooltip is shown).
+  - **]:** Xaero's (open settings) and Sophisticated Core (transfer to inventory, inside storage screens).
+- **Action:** none yet. If any of these get in the way, rebind and regenerate the file.
 
 ### Worldgen mods are permanent per world
 - **Seen:** 2026-11-21, adding Tectonic and Terralith.

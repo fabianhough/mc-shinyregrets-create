@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/defaultoptions/keybindings.txt"
+hash = "52c985c38a888c557f3706bc846c55f94e1672f78f0959c0bf35933470ff6fed"
+
+[[files]]
 file = "installed.json"
 hash = "0c99210bb6088374c2fffdfcd063913bfca7e9c356442d710c1bbce08dc2f964"
 
