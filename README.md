@@ -16,6 +16,7 @@ A modded Minecraft modpack designed to primarily feature the Create mod.
 Working rules for this pack (for humans and agents alike). Added as they are agreed on.
 
 1. **Modrinth-only sourcing.** Every mod must be available on Modrinth and added via `packwiz modrinth add`. No CurseForge, GitHub, or direct-URL sources.
+2. **Stable releases only.** Use Modrinth versions marked "release", not beta or alpha. packwiz picks the newest version regardless of channel, so add mods with an explicit `--version-id` when the newest is a beta. Exceptions are decided case by case and logged in [Mod Choices](docs/mod-choices.md#exceptions).
 
 ## Tooling
 
