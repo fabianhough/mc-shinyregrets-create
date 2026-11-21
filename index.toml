@@ -224,3 +224,18 @@ metafile = true
 file = "mods/xaeros-world-map.pw.toml"
 hash = "3a8e91aecdb602039ba1f7445bbf6b64cc5a46344339a3ffaf3b2e3eb2f5bcbc"
 metafile = true
+
+[[files]]
+file = "shaderpacks/bliss-shader.pw.toml"
+hash = "f25a34e083b05071711bb97464a0bd6c2f5fc6e4c0bc650ee2d133508c21a868"
+metafile = true
+
+[[files]]
+file = "shaderpacks/complementary-reimagined.pw.toml"
+hash = "0d32bfe86e50ee8f5533cf53f1f1a3597f34df2ae2408b120f96bc4bbc723706"
+metafile = true
+
+[[files]]
+file = "shaderpacks/complementary-unbound.pw.toml"
+hash = "71ef38dd4b5a0a9b3dda3770150e94b849ba3160010d0d023511e6941aa79e3e"
+metafile = true
