@@ -1,6 +1,10 @@
 # mc-shinyregrets-create
 A modded Minecraft modpack designed to primarily feature the Create mod. 
 
+## Purpose
+
+Get a small group of friends comfortable with Minecraft again, with modded Minecraft, and especially with Create. The pack is a polished vanilla++ base with Create as the depth. Adventure and exploration content (structures, dungeons, new mobs) is intentionally deferred to a later phase, once the group is at an advanced level. See the principles in [Mod Choices](docs/mod-choices.md#principles).
+
 ## Pack targets
 
 - Minecraft: 1.21.1

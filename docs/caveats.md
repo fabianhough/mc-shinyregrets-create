@@ -15,7 +15,7 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 
 ### Some Modrinth environment values are unknown to packwiz
 - **Seen:** 2026-11-21.
-- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, Tectonic publishes `server_only_client_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's and Balm's `client_or_server` also becomes `both`, with a warning.
+- **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, Tectonic publishes `server_only_client_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's, Balm's and spark's `client_or_server` also becomes `both`, with a warning.
 - **Action:** none. Harmless for a single client-and-server pack.
 
 ---
@@ -89,9 +89,10 @@ Modrinth's dependency list (what packwiz uses) doesn't always match what the jar
 
 ---
 
-## Unverified
+## Unexplained but working
 
 ### Minecraft version range appears to exclude 1.21.1
 - **Seen:** 2026-11-21, during the jar requirement check.
-- **Detail:** Iris, JEI and Nature's Compass declare `versionRange = "[1.21,1.21.1)"` for Minecraft, which read literally excludes 1.21.1. All three are 1.21.1 builds with very high download counts, so they very likely load anyway. Why is unknown.
-- **Action:** none. If the game refuses to start with a version error, look here first.
+- **Detail:** Iris, JEI and Nature's Compass declare `versionRange = "[1.21,1.21.1)"` for Minecraft, which read literally excludes 1.21.1. Why it works is unknown.
+- **Observed:** all three load fine on 1.21.1; tested in Prism across v0.1.0 to v0.3.1.
+- **Action:** none. If a future update of one of these refuses to start with a version error, look here first.

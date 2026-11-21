@@ -7,6 +7,7 @@ Why each mod is in the pack. Minecraft 1.21.1, NeoForge 21.1.267. Last updated 2
 - **Why NeoForge 1.21.1.** Create's active development branch is `mc1.21.1/dev`; its 1.20.1 branch has been quiet since Nov 2025, and Create Aeronautics is NeoForge 1.21.1 only. Fabric 1.20.1 was evaluated and rejected: Create Fabric is a community port that trails (6.0.8.1 vs 6.0.10), and several add-ons have no Fabric build.
 - **Vanilla++.** Vanilla plus performance, visual and UI mods and cohesive vanilla-style additions, with Create as the central content mod. "Cohesive" means balanced and in keeping with vanilla, not power-creep: Better Combat and Simply Swords fit; something like Apotheosis, which makes gear and progression overpowered, does not.
 - **Community-proven and polished.** Prefer mods with a long track record that work cleanly together.
+- **Onboarding first; adventure later.** The pack's job is to get friends comfortable with modded Minecraft through Create, which provides enough depth on its own. Adventure and exploration content (structures, dungeons, new mobs and bosses) is deliberately deferred to a later phase, once the group is at an advanced level. An empty structures category is intentional, not a gap (decided 2026-11-21).
 - **No magic system.** Ars Nouveau and Ars Creo were dropped (decided 2026-11-20).
 - **Aeronautics is a separate integration effort**, not part of this pack's current build.
 - **Modrinth only, stable releases only.** See the Rules in the [README](../README.md). Exceptions are listed under [Exceptions](#exceptions).
@@ -18,7 +19,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (54)
+## Chosen mods (56)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -55,6 +56,12 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Controlling](https://modrinth.com/mod/controlling) | client | Keybind search. |
 | [Default Options](https://modrinth.com/mod/default-options) | client | Lets the pack ship default keybinds (from `config/defaultoptions/`) without overwriting players' own settings on updates. Added to resolve the B-key conflict between Sophisticated Backpacks and Xaero's Minimap (see [Caveats](caveats.md#b-key-opens-both-the-backpack-and-a-xaeros-waypoint-screen)). |
 | [Mouse Tweaks](https://modrinth.com/mod/mouse-tweaks) | client | Inventory handling (drag, scroll and click transfers). |
+
+### Stability and diagnostics
+| Mod | Side | Why |
+|---|---|---|
+| [Neruina](https://modrinth.com/mod/neruina) | both | When an entity, block entity or item crashes while ticking, Neruina suspends it instead of letting it crash and brick the world. A safety net for a server full of Create contraptions. Suspended things are announced in chat with options to teleport to them, retry or kill them. |
+| [spark](https://modrinth.com/mod/spark) | both | Performance profiler (`/spark profiler`, `/spark health`). Lightweight enough to leave installed; the tool for diagnosing lag on the server or a client. |
 
 ### World generation
 | Mod | Side | Why |
@@ -139,6 +146,7 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
 | [Lithostitched](https://modrinth.com/mod/lithostitched) | both | Tectonic, Terralith |
 | [Balm](https://modrinth.com/mod/balm) | both | Default Options |
+| [Configurable](https://modrinth.com/mod/configurable) | both | Neruina |
 
 Bundled inside other jars (no separate file):
 - **Flywheel, Ponder, Registrate:** inside Create.
@@ -196,12 +204,13 @@ Lithostitched ──┬── Tectonic
                 └── Terralith
 
 Balm ────────── Default Options
+Configurable ── Neruina
 CreativeCore ── AmbientSounds
 Searchables ─── Controlling
 MezzConfig ──── JEI
 ```
 
-Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
+Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, spark, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
 
 ---
 
@@ -230,6 +239,8 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 | Open Parties and Claims | Claims aren't needed on a small server. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
 | Waystones | Pending the travel design. |
 | Reese's Sodium Options | A nicer video settings screen for Sodium; Sodium Extra lists it as an optional pairing. |
+| [Simple Voice Chat](https://modrinth.com/mod/simple-voice-chat) | Proximity voice chat. Has a stable NeoForge 1.21.1 build (newest is beta; pin the stable one). Pairs with Sound Physics Remastered. Needs a UDP port opened on the server (itzg: expose it in the container). |
+| [Chunky](https://modrinth.com/mod/chunky) | Pre-generates chunks so exploring doesn't make the server generate Tectonic's heavy terrain live. Server-side tool; run before players join. Note: structure mods added later won't appear in pre-generated chunks. |
 
 ### Candidates for categories not yet filled
 Each has a NeoForge 1.21.1 build, either checked on its own page or present in ATM10's modlist. None are decided.
@@ -237,5 +248,5 @@ Each has a NeoForge 1.21.1 build, either checked on its own page or present in A
 - **Structures and dungeons:** YUNG's suite (Better Dungeons, Better Mineshafts, Desert Temples, Strongholds, Nether Fortresses, End Island), When Dungeons Arise, Dungeon Crawl, Integrated Dungeons and Structures, Dungeons and Taverns, Repurposed Structures, Towns and Towers, Villages & Pillages, Deeper and Darker.
 - **Weapons and gear (no magic):** Artifacts, Relics.
 - **Mobs and bosses:** L_Ender's Cataclysm; Alex's Mobs (unofficial 1.21.1 port only).
-- **Ideas from Just Create SMP 2:** FTB Chunks, Vanilla Backport and Copper Age Backport for vanilla catch-up, KubeJS and LootJS for scripting (needed for found-versus-made gear), Simple Voice Chat.
+- **Ideas from Just Create SMP 2:** FTB Chunks, Vanilla Backport and Copper Age Backport for vanilla catch-up, KubeJS and LootJS for scripting (needed for found-versus-made gear).
 
