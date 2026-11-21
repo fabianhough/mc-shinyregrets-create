@@ -75,6 +75,11 @@ hash = "c7f9286eabbfd298a73a92dc91031a27a8551a7cda8656f2173a4ba8cc0ac1a2"
 metafile = true
 
 [[files]]
+file = "mods/configurable.pw.toml"
+hash = "dcd40eb17aefa2335e200f44114967260f5b5bc3dbae4e426c19dabcc89a6019"
+metafile = true
+
+[[files]]
 file = "mods/controlling.pw.toml"
 hash = "65c8086d2ec3d39acc7bd36c7a0306ccc43b602b38fa07d13291bc478ef7dfff"
 metafile = true
@@ -255,6 +260,11 @@ hash = "35acdf433fe8f8599f59975e848efdb717663c2c471d3a5dc18743799795a736"
 metafile = true
 
 [[files]]
+file = "mods/neruina.pw.toml"
+hash = "2dec6835297e950b5df86d8a879e97e279b5698d14c599c5a2a192918312c5c8"
+metafile = true
+
+[[files]]
 file = "mods/ok-zoomer.pw.toml"
 hash = "413494b5ba534461e22545173a8cc6e98b04962a0ee9514498b830b99d4acabe"
 metafile = true
@@ -322,6 +332,11 @@ metafile = true
 [[files]]
 file = "mods/sound-physics-remastered.pw.toml"
 hash = "6727704e22c27be46fc08859f94dd0061cecf27ed2a7451c5bc1a0bdf50edbe5"
+metafile = true
+
+[[files]]
+file = "mods/spark.pw.toml"
+hash = "593fa7b30ab016aa45be07bd6bef3a9f160ed0f24689850d60bf84995d69b843"
 metafile = true
 
 [[files]]
