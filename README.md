@@ -15,7 +15,6 @@ Get a small group of friends comfortable with Minecraft again, with modded Minec
 
 - **Server:** Docker, using [`itzg/minecraft-server`](https://hub.docker.com/r/itzg/minecraft-server), running the same `.mrpack` players install (one pack for client and server).
 - **Backups:** the [`itzg/mc-backup`](https://hub.docker.com/r/itzg/mc-backup) sidecar container alongside the server.
-- Server-side tools that aren't part of the pack (for example Chunky for pre-generation) belong in the server configuration, not in the pack.
 
 ## Documentation
 
