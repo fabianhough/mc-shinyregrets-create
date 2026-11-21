@@ -9,7 +9,7 @@ A modded Minecraft modpack designed to primarily feature the Create mod.
 
 ## Documentation
 
-- [Mod Choices](docs/mod-choices.md): why each mod is in the pack, what's under consideration, and what was rejected. Kept up to date as the pack changes.
+- [Mod Choices](docs/mod-choices.md): why each mod is in the pack, what's approved for later, and what's under consideration. Kept up to date as the pack changes.
 - [Caveats and Known Issues](docs/caveats.md): quirks, duplicate files, metadata mismatches and other things to watch for, logged as we find them.
 
 ## Rules
