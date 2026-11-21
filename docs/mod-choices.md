@@ -48,7 +48,7 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 |---|---|---|
 | [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) | both | Minimap. |
 | [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) | both | World map. Create requires ≥ 1.40.2 for its built-in train-map overlay. |
-| [JEI](https://modrinth.com/mod/jei) | both | The sole recipe viewer. Create ships a JEI plugin. EMI was tried and turned off (see Rejected and turned off). |
+| [JEI](https://modrinth.com/mod/jei) | both | The sole recipe viewer. Create ships a JEI plugin. EMI was tried and turned off: it added little over JEI, its UI scales a bit too large, and its recipe tree handles Create poorly. |
 | [Jade](https://modrinth.com/mod/jade) | both | Block and entity info on look-at. |
 | [AppleSkin](https://modrinth.com/mod/appleskin) | both | Hunger and saturation display. |
 | [Controlling](https://modrinth.com/mod/controlling) | client | Keybind search. |
@@ -164,7 +164,6 @@ Not an exception, but worth knowing: Iris's version number reads `1.8.14-beta.1`
 | Mod | Notes |
 |---|---|
 | Create Stuff 'N Additions | **Planned for the next build** (decided 2026-11-21). Optional add-on; the preferred choice over Create Jetpack if a jetpack goes in. |
-| Reese's Sodium Options | Not discussed yet. Sodium Extra lists it as an optional pairing (a nicer video settings screen). |
 
 ### Approved, add when needed
 Already vetted as OK to add; not in the pack yet only because they aren't needed now (the servers will be small). If a need comes up, add them to the pack for everyone, without re-litigating whether they belong (decided 2026-11-21).
@@ -175,6 +174,7 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 | Create: Liquid Fuel | Not yet checked on Modrinth for a NeoForge 1.21.1 stable build. |
 | Open Parties and Claims | Claims aren't needed on a small server. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
 | Waystones | Pending the travel design. |
+| Reese's Sodium Options | A nicer video settings screen for Sodium; Sodium Extra lists it as an optional pairing. |
 
 ### Candidates for categories not yet filled
 Each has a NeoForge 1.21.1 build, either checked on its own page or present in ATM10's modlist. None are decided.
@@ -184,14 +184,3 @@ Each has a NeoForge 1.21.1 build, either checked on its own page or present in A
 - **Mobs and bosses:** L_Ender's Cataclysm; Alex's Mobs (unofficial 1.21.1 port only).
 - **Ideas from Just Create SMP 2:** FTB Chunks, Vanilla Backport and Copper Age Backport for vanilla catch-up, KubeJS and LootJS for scripting (needed for found-versus-made gear), Simple Voice Chat.
 
----
-
-## Rejected and turned off
-| Mod | Reason |
-|---|---|
-| Continuity | The NeoForge build depends on Sinytra Connector and Fabric API, which breaks the pure-NeoForge rule. |
-| Embeddium, Oculus | Stale, no 1.21.1 build. |
-| EMI | Turned off. It added little over JEI, its UI scales a bit too large, and its recipe tree handles Create poorly (for example the dough to slime ball path). |
-| Ars Nouveau, Ars Creo | No magic system in this pack. |
-| Create: Numismatics | Not needed: Create has its own economy items (decided 2026-11-21). |
-| Inventory Essentials | Came from the Just Create SMP 2 list, but not something we'd use (decided 2026-11-21). |
