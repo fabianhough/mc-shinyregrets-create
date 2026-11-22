@@ -19,7 +19,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (54)
+## Chosen mods (61)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -93,6 +93,13 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Farmer's Delight](https://modrinth.com/mod/farmers-delight) | both | Food and cooking. The first content mod in the pack, in keeping with the vanilla feel. |
 | [Easy Villagers](https://modrinth.com/mod/easy-villagers) | both | Villagers as items. |
 | [Chimes](https://modrinth.com/mod/chimes) | both | Wind chimes. Added because it's cute. |
+| [RightClickHarvest](https://modrinth.com/mod/rightclickharvest) | both | Right-click a grown crop to harvest and replant it, as in ATM. **Pack default: requires holding a hoe** (shipped in `config/rightclickharvest.json5`; the mod's own default is no hoe). Players see a one-time chat hint the first time they try without one. |
+| [TrashSlot](https://modrinth.com/mod/trashslot) | both | A draggable trash slot in inventory screens (toggle with T while in an inventory). Familiar from ATM. |
+| [Accelerated Decay](https://modrinth.com/mod/accelerated-decay) | both | Leaves decay quickly after a tree is cut, instead of lingering. Familiar from ATM. |
+| [Waystones](https://modrinth.com/mod/waystones) | both | Teleporting between waystones, which turned out to be crucial for travel in this pack (moved from approved-when-needed, 2026-11-22). Xaero's Minimap has built-in Waystones support (on by default), and Xaero's World Map reads those waypoints, so discovered waystones appear on both maps without a compat mod. The separate "Xaero's Minimap & World Map - Waystones Compatibility" mod was considered and left out: it would add a second waypoint per waystone. Village waystones only generate in newly generated chunks. |
+| [Supplementaries](https://modrinth.com/mod/supplementaries) | both | Vanilla-style blocks and items (jars, signposts, faucets, sconces, planters, ropes, sacks, a quiver, flax and more). Fits vanilla++. Requires Sodium 0.8.12 or newer (see [Caveats](caveats.md#supplementaries-requires-sodium-0812-or-newer)). Its worldgen (wild flax, road signs) only appears in newly generated chunks. |
+| [Amendments](https://modrinth.com/mod/amendments) | both | Tweaks to vanilla blocks (wall lanterns, better cauldrons, hanging pots and more). Same team as Supplementaries. |
+| [Comforts](https://modrinth.com/mod/comforts) | both | Sleeping bags (sleep anywhere without moving your spawn) and hammocks (skip the day). |
 
 ### Create: core and integrations
 | Mod | Side | Why |
@@ -127,7 +134,7 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) | both | Sophisticated Backpacks, Sophisticated Storage, and both Create integrations |
 | [Create: Dragons Plus](https://modrinth.com/mod/create-dragons-plus) | both | Create: Enchantment Industry |
 | [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) | both | Create Slice & Dice, Fzzy Config |
-| [Architectury API](https://modrinth.com/mod/architectury-api) | both | Simply Swords, Simply Tooltips; also Create Cobblestone (listed on Modrinth; that jar doesn't declare it) |
+| [Architectury API](https://modrinth.com/mod/architectury-api) | both | Simply Swords, Simply Tooltips, RightClickHarvest, JamLib, Accelerated Decay; also Create Cobblestone (listed on Modrinth; that jar doesn't declare it) |
 | [BaguetteLib](https://modrinth.com/mod/baguettelib) | both | Gravestone x Curios API Compat |
 | [Searchables](https://modrinth.com/mod/searchables) | client | Controlling |
 | [MezzConfig](https://modrinth.com/mod/mezzconfig) | both | JEI (beta-only; see [Exceptions](#exceptions)) |
@@ -136,7 +143,9 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [CreativeCore](https://modrinth.com/mod/creativecore) | both | AmbientSounds |
 | [Fzzy Config](https://modrinth.com/mod/fzzy-config) | both | Simply Swords, Simply Tooltips |
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
-| [Balm](https://modrinth.com/mod/balm) | both | Default Options |
+| [Balm](https://modrinth.com/mod/balm) | both | Default Options, TrashSlot, Waystones |
+| [JamLib](https://modrinth.com/mod/jamlib) | both | RightClickHarvest |
+| [Moonlight Lib](https://modrinth.com/mod/moonlight) | both | Supplementaries, Amendments |
 | [Configurable](https://modrinth.com/mod/configurable) | both | Neruina |
 
 Bundled inside other jars (no separate file):
@@ -146,7 +155,11 @@ Bundled inside other jars (no separate file):
 - **XaeroLib:** inside both Xaero's Minimap and Xaero's World Map.
 - **Wrench Wrapper:** inside Ok Zoomer.
 - **Kuma API:** inside Balm.
-- **Cloth Config 15.0.128:** inside Freecam, in a folder NeoForge doesn't load bundled mods from. The standalone Cloth Config above covers it.
+- **Cloth Config 15.0.128:** inside Freecam. NeoForge loads the newest copy present, so the standalone Cloth Config (15.0.140) is used.
+- **Jankson:** inside JamLib and Fzzy Config.
+- **MixinSquared, Sable Companion:** inside Supplementaries.
+- **SpectreLib:** inside Comforts.
+- **CodecUI:** inside Moonlight Lib.
 
 ### Dependency tree
 
@@ -190,14 +203,20 @@ Kotlin for Forge
 Cloth Config ──────┬── BetterF3
 playerAnimator ────┴── Better Combat      (requires both)
 
-Balm ────────── Default Options
+Balm ──────────┬── Default Options
+               ├── TrashSlot
+               └── Waystones
+JamLib ──────── RightClickHarvest     (both also require Architectury API)
+Architectury ── Accelerated Decay
+Moonlight Lib ─┬── Supplementaries
+               └── Amendments
 Configurable ── Neruina
 CreativeCore ── AmbientSounds
 Searchables ─── Controlling
 MezzConfig ──── JEI
 ```
 
-Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, spark, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
+Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, spark, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes, Comforts) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
 
 ---
 
@@ -224,7 +243,6 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 | Mod | Notes |
 |---|---|
 | Open Parties and Claims | Claims aren't needed on a small server. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
-| Waystones | Pending the travel design. |
 | Reese's Sodium Options | A nicer video settings screen for Sodium; Sodium Extra lists it as an optional pairing. |
 | [Simple Voice Chat](https://modrinth.com/mod/simple-voice-chat) | Proximity voice chat. Has a stable NeoForge 1.21.1 build (newest is beta; pin the stable one). Pairs with Sound Physics Remastered. Needs a UDP port opened on the server (itzg: expose it in the container). |
 | [Chunky](https://modrinth.com/mod/chunky) | Pre-generates chunks so exploring doesn't make the server generate terrain live. Server-side tool; run before players join. Note: structure mods added later won't appear in pre-generated chunks. |

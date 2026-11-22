@@ -13,6 +13,11 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 - **Detail:** `packwiz modrinth add` (and `packwiz update`) choose the most recently published version, betas included. Confirmed in packwiz's source (`modrinth/modrinth.go`, `getLatestVersion`).
 - **Action:** stable versions are pinned with `--version-id` when adding. **`packwiz update --all` would bump JEI and Enchantment Industry to betas**, so check channels after any update.
 
+### packwiz warns about Moonlight Lib's version numbers
+- **Seen:** 2026-11-22, adding Supplementaries.
+- **Detail:** packwiz printed "Modrinth versions for Moonlight Lib inconsistent between latest version number and newest release date (neoforge_1.21-2.18.11 vs 1.21.1-3.8.3)". Moonlight changed its version naming, so sorting by version number picks an old build. packwiz goes by release date, which picked the correct, newest stable 1.21.1-3.8.3.
+- **Action:** none. If `packwiz update` ever proposes an older Moonlight, this naming change is why; pin with `--version-id`.
+
 ### Some Modrinth environment values are unknown to packwiz
 - **Seen:** 2026-11-21.
 - **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's, Balm's and spark's `client_or_server` also becomes `both`, with a warning.
@@ -37,6 +42,11 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
   - **]:** Xaero's (open settings) and Sophisticated Core (transfer to inventory, inside storage screens).
 - **Action:** none yet. If any of these get in the way, rebind and regenerate the file.
 
+### The pack ships a RightClickHarvest config
+- **Seen:** 2026-11-22.
+- **Detail:** `config/rightclickharvest.json5` sets `requireHoe: true` (the mod's default is `false`); the other values match the mod's 4.7.2 defaults. It's included in the `.mrpack` as an override file, so it reaches clients and the server.
+- **Action:** to change a pack default, change this file in the repo, not in an instance or on the server. A pack update may reset the file to the pack's version. After deploying, check that `/data/config/rightclickharvest.json5` on the server shows `requireHoe: true`, since that's the copy that controls multiplayer.
+
 ### Worldgen mods need deciding before the server world
 - **Seen:** 2026-11-21, while Tectonic and Terralith were in the pack (0.3.0 to 0.4.0; removed before any server world existed).
 - **Detail:** terrain and biome mods shape chunks as they generate. Per Terralith's Modrinth page, it can't be removed from an existing world and shouldn't be added to one. Adding a worldgen mod later leaves a visible seam between old and new terrain; removing one can break the world.
@@ -53,10 +63,10 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 - **Earlier testing:** the pre-packwiz Prism setup ran JEI 19.70.0.467 (a beta) with MezzConfig 0.6.9. The pack now uses stable JEI 19.64.0.455, so JEI behaviour may differ slightly from that testing.
 - **Action:** kept, per the working policy. If JEI's config screen misbehaves, try removing the standalone MezzConfig (`packwiz remove mezzconfig`) so JEI's bundled copy is used.
 
-### Freecam bundles Cloth Config where NeoForge doesn't look
-- **Seen:** 2026-11-21.
-- **Detail:** Freecam's Modrinth listing marks Cloth Config as embedded. The copy (15.0.128) sits in `META-INF/jars/`, Fabric's location for bundled mods; NeoForge loads bundled mods from `META-INF/jarjar/`. Freecam's jar doesn't declare Cloth Config as required.
-- **Action:** none. The standalone Cloth Config (pulled in by BetterF3 and Better Combat) is present anyway. If those two are ever removed and Freecam's settings screen breaks, this is why.
+### Freecam bundles its own Cloth Config
+- **Seen:** 2026-11-21; corrected 2026-11-22.
+- **Detail:** Freecam's jar carries Cloth Config 15.0.128 in `META-INF/jars/`, declared through `META-INF/jarjar/metadata.json`, so NeoForge does load it (the folder name doesn't matter; the metadata does). With the standalone Cloth Config 15.0.140 also present, NeoForge uses the newer copy. JamLib and Fzzy Config bundle Jankson the same way.
+- **Action:** none. (The first version of this entry said NeoForge ignores that folder; it doesn't, as long as the metadata points there.)
 
 ---
 
@@ -68,6 +78,13 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 - **Action:** none. Worth watching for an official 1.21.1 release, which would be the one to switch to. Bug reports go to the port, not the official project.
 
 ---
+
+## Version coupling between mods
+
+### Supplementaries requires Sodium 0.8.12 or newer
+- **Seen:** 2026-11-22.
+- **Detail:** Supplementaries 4.1.4 declares Sodium below `0.8.12-beta.1` incompatible: Sodium 0.8.12 changed its integration API and Supplementaries' fluid-rendering compat (`CompatSodiumFluidRendererMixin`, client-only, optional) targets the new one. The pack runs Sodium 0.8.13; all ten Sodium classes the mixin uses exist in it.
+- **Action:** never downgrade Sodium below 0.8.12 while Supplementaries is in the pack; the game would refuse to start and name the conflict.
 
 ## Metadata mismatches (Modrinth vs. the jar)
 
