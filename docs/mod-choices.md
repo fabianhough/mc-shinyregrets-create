@@ -19,7 +19,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (57)
+## Chosen mods (58)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -96,6 +96,7 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [RightClickHarvest](https://modrinth.com/mod/rightclickharvest) | both | Right-click a grown crop to harvest and replant it, as in ATM. **Pack default: requires holding a hoe** (shipped in `config/rightclickharvest.json5`; the mod's own default is no hoe). Players see a one-time chat hint the first time they try without one. |
 | [TrashSlot](https://modrinth.com/mod/trashslot) | both | A draggable trash slot in inventory screens (toggle with T while in an inventory). Familiar from ATM. |
 | [Accelerated Decay](https://modrinth.com/mod/accelerated-decay) | both | Leaves decay quickly after a tree is cut, instead of lingering. Familiar from ATM. |
+| [Waystones](https://modrinth.com/mod/waystones) | both | Teleporting between waystones, which turned out to be crucial for travel in this pack (moved from approved-when-needed, 2026-11-22). Xaero's Minimap has built-in Waystones support (on by default), and Xaero's World Map reads those waypoints, so discovered waystones appear on both maps without a compat mod. The separate "Xaero's Minimap & World Map - Waystones Compatibility" mod was considered and left out: it would add a second waypoint per waystone. Village waystones only generate in newly generated chunks. |
 
 ### Create: core and integrations
 | Mod | Side | Why |
@@ -139,7 +140,7 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [CreativeCore](https://modrinth.com/mod/creativecore) | both | AmbientSounds |
 | [Fzzy Config](https://modrinth.com/mod/fzzy-config) | both | Simply Swords, Simply Tooltips |
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
-| [Balm](https://modrinth.com/mod/balm) | both | Default Options, TrashSlot |
+| [Balm](https://modrinth.com/mod/balm) | both | Default Options, TrashSlot, Waystones |
 | [JamLib](https://modrinth.com/mod/jamlib) | both | RightClickHarvest |
 | [Configurable](https://modrinth.com/mod/configurable) | both | Neruina |
 
@@ -196,7 +197,8 @@ Cloth Config ──────┬── BetterF3
 playerAnimator ────┴── Better Combat      (requires both)
 
 Balm ──────────┬── Default Options
-               └── TrashSlot
+               ├── TrashSlot
+               └── Waystones
 JamLib ──────── RightClickHarvest     (both also require Architectury API)
 Architectury ── Accelerated Decay
 Configurable ── Neruina
@@ -232,7 +234,6 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 | Mod | Notes |
 |---|---|
 | Open Parties and Claims | Claims aren't needed on a small server. Just Create SMP 2 uses FTB Chunks instead. Xaero's maps list it as an optional integration. |
-| Waystones | Pending the travel design. |
 | Reese's Sodium Options | A nicer video settings screen for Sodium; Sodium Extra lists it as an optional pairing. |
 | [Simple Voice Chat](https://modrinth.com/mod/simple-voice-chat) | Proximity voice chat. Has a stable NeoForge 1.21.1 build (newest is beta; pin the stable one). Pairs with Sound Physics Remastered. Needs a UDP port opened on the server (itzg: expose it in the container). |
 | [Chunky](https://modrinth.com/mod/chunky) | Pre-generates chunks so exploring doesn't make the server generate terrain live. Server-side tool; run before players join. Note: structure mods added later won't appear in pre-generated chunks. |
