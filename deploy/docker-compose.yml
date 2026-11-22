@@ -80,6 +80,11 @@ services:
       TAR_COMPRESS_METHOD: zstd     # faster than the default gzip
       LINK_LATEST: "true"           # backups/latest.* symlink for easy restores
       # Default EXCLUDES already skips *.jar, cache, logs, *.tmp: mods are re-downloaded from the pack.
+      # In-game chat notices (rcon-cli inherits the RCON connection settings from the backup loop)
+      PRE_SAVE_ALL_SCRIPT: |
+        rcon-cli say "Backing up the world..." || true
+      POST_BACKUP_SCRIPT: |
+        if [ "$$1" -eq 0 ]; then rcon-cli say "Backup complete." || true; else rcon-cli say "Backup FAILED - check the server logs." || true; fi
     secrets:
       - rcon_password
     volumes:
