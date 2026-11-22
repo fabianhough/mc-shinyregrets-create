@@ -29,6 +29,7 @@ Working rules for this pack (for humans and agents alike). Added as they are agr
 
 1. **Modrinth-only sourcing.** Every mod must be available on Modrinth and added via `packwiz modrinth add`. No CurseForge, GitHub, or direct-URL sources.
 2. **Stable releases only.** Use Modrinth versions marked "release", not beta or alpha. packwiz picks the newest version regardless of channel, so add mods with an explicit `--version-id` when the newest is a beta. Exceptions are decided case by case and logged in [Mod Choices](docs/mod-choices.md#exceptions).
+3. **One PR per version.** Each pack version is built on its own pull request. The flow: research proposed mods and report back (nothing is added until approved); add approved mods to the version's PR; export the `.mrpack` for a local test in Prism; once the local test passes, upload that build to Modrinth as a new version; then the PR is reviewed and merged.
 
 ## Tooling
 
