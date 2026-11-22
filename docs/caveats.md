@@ -37,6 +37,11 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
   - **]:** Xaero's (open settings) and Sophisticated Core (transfer to inventory, inside storage screens).
 - **Action:** none yet. If any of these get in the way, rebind and regenerate the file.
 
+### The pack ships a RightClickHarvest config
+- **Seen:** 2026-11-22.
+- **Detail:** `config/rightclickharvest.json5` sets `requireHoe: true` (the mod's default is `false`); the other values match the mod's 4.7.2 defaults. It's included in the `.mrpack` as an override file, so it reaches clients and the server.
+- **Action:** to change a pack default, change this file in the repo, not in an instance or on the server. A pack update may reset the file to the pack's version. After deploying, check that `/data/config/rightclickharvest.json5` on the server shows `requireHoe: true`, since that's the copy that controls multiplayer.
+
 ### Worldgen mods need deciding before the server world
 - **Seen:** 2026-11-21, while Tectonic and Terralith were in the pack (0.3.0 to 0.4.0; removed before any server world existed).
 - **Detail:** terrain and biome mods shape chunks as they generate. Per Terralith's Modrinth page, it can't be removed from an existing world and shouldn't be added to one. Adding a worldgen mod later leaves a visible seam between old and new terrain; removing one can break the world.
@@ -53,10 +58,10 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 - **Earlier testing:** the pre-packwiz Prism setup ran JEI 19.70.0.467 (a beta) with MezzConfig 0.6.9. The pack now uses stable JEI 19.64.0.455, so JEI behaviour may differ slightly from that testing.
 - **Action:** kept, per the working policy. If JEI's config screen misbehaves, try removing the standalone MezzConfig (`packwiz remove mezzconfig`) so JEI's bundled copy is used.
 
-### Freecam bundles Cloth Config where NeoForge doesn't look
-- **Seen:** 2026-11-21.
-- **Detail:** Freecam's Modrinth listing marks Cloth Config as embedded. The copy (15.0.128) sits in `META-INF/jars/`, Fabric's location for bundled mods; NeoForge loads bundled mods from `META-INF/jarjar/`. Freecam's jar doesn't declare Cloth Config as required.
-- **Action:** none. The standalone Cloth Config (pulled in by BetterF3 and Better Combat) is present anyway. If those two are ever removed and Freecam's settings screen breaks, this is why.
+### Freecam bundles its own Cloth Config
+- **Seen:** 2026-11-21; corrected 2026-11-22.
+- **Detail:** Freecam's jar carries Cloth Config 15.0.128 in `META-INF/jars/`, declared through `META-INF/jarjar/metadata.json`, so NeoForge does load it (the folder name doesn't matter; the metadata does). With the standalone Cloth Config 15.0.140 also present, NeoForge uses the newer copy. JamLib and Fzzy Config bundle Jankson the same way.
+- **Action:** none. (The first version of this entry said NeoForge ignores that folder; it doesn't, as long as the metadata points there.)
 
 ---
 

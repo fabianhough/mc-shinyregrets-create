@@ -19,7 +19,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (54)
+## Chosen mods (57)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -93,6 +93,9 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [Farmer's Delight](https://modrinth.com/mod/farmers-delight) | both | Food and cooking. The first content mod in the pack, in keeping with the vanilla feel. |
 | [Easy Villagers](https://modrinth.com/mod/easy-villagers) | both | Villagers as items. |
 | [Chimes](https://modrinth.com/mod/chimes) | both | Wind chimes. Added because it's cute. |
+| [RightClickHarvest](https://modrinth.com/mod/rightclickharvest) | both | Right-click a grown crop to harvest and replant it, as in ATM. **Pack default: requires holding a hoe** (shipped in `config/rightclickharvest.json5`; the mod's own default is no hoe). Players see a one-time chat hint the first time they try without one. |
+| [TrashSlot](https://modrinth.com/mod/trashslot) | both | A draggable trash slot in inventory screens (toggle with T while in an inventory). Familiar from ATM. |
+| [Accelerated Decay](https://modrinth.com/mod/accelerated-decay) | both | Leaves decay quickly after a tree is cut, instead of lingering. Familiar from ATM. |
 
 ### Create: core and integrations
 | Mod | Side | Why |
@@ -127,7 +130,7 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [Sophisticated Core](https://modrinth.com/mod/sophisticated-core) | both | Sophisticated Backpacks, Sophisticated Storage, and both Create integrations |
 | [Create: Dragons Plus](https://modrinth.com/mod/create-dragons-plus) | both | Create: Enchantment Industry |
 | [Kotlin for Forge](https://modrinth.com/mod/kotlin-for-forge) | both | Create Slice & Dice, Fzzy Config |
-| [Architectury API](https://modrinth.com/mod/architectury-api) | both | Simply Swords, Simply Tooltips; also Create Cobblestone (listed on Modrinth; that jar doesn't declare it) |
+| [Architectury API](https://modrinth.com/mod/architectury-api) | both | Simply Swords, Simply Tooltips, RightClickHarvest, JamLib, Accelerated Decay; also Create Cobblestone (listed on Modrinth; that jar doesn't declare it) |
 | [BaguetteLib](https://modrinth.com/mod/baguettelib) | both | Gravestone x Curios API Compat |
 | [Searchables](https://modrinth.com/mod/searchables) | client | Controlling |
 | [MezzConfig](https://modrinth.com/mod/mezzconfig) | both | JEI (beta-only; see [Exceptions](#exceptions)) |
@@ -136,7 +139,8 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [CreativeCore](https://modrinth.com/mod/creativecore) | both | AmbientSounds |
 | [Fzzy Config](https://modrinth.com/mod/fzzy-config) | both | Simply Swords, Simply Tooltips |
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
-| [Balm](https://modrinth.com/mod/balm) | both | Default Options |
+| [Balm](https://modrinth.com/mod/balm) | both | Default Options, TrashSlot |
+| [JamLib](https://modrinth.com/mod/jamlib) | both | RightClickHarvest |
 | [Configurable](https://modrinth.com/mod/configurable) | both | Neruina |
 
 Bundled inside other jars (no separate file):
@@ -146,7 +150,8 @@ Bundled inside other jars (no separate file):
 - **XaeroLib:** inside both Xaero's Minimap and Xaero's World Map.
 - **Wrench Wrapper:** inside Ok Zoomer.
 - **Kuma API:** inside Balm.
-- **Cloth Config 15.0.128:** inside Freecam, in a folder NeoForge doesn't load bundled mods from. The standalone Cloth Config above covers it.
+- **Cloth Config 15.0.128:** inside Freecam. NeoForge loads the newest copy present, so the standalone Cloth Config (15.0.140) is used.
+- **Jankson:** inside JamLib and Fzzy Config.
 
 ### Dependency tree
 
@@ -190,7 +195,10 @@ Kotlin for Forge
 Cloth Config ──────┬── BetterF3
 playerAnimator ────┴── Better Combat      (requires both)
 
-Balm ────────── Default Options
+Balm ──────────┬── Default Options
+               └── TrashSlot
+JamLib ──────── RightClickHarvest     (both also require Architectury API)
+Architectury ── Accelerated Decay
 Configurable ── Neruina
 CreativeCore ── AmbientSounds
 Searchables ─── Controlling

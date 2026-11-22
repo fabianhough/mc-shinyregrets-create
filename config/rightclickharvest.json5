@@ -1,0 +1,10 @@
+{
+  // Pack default: right-click harvesting (and replanting) requires holding a hoe.
+  "requireHoe": true,
+  // The rest match RightClickHarvest 4.7.2's own defaults.
+  "harvestInRadius": true,
+  "hungerLevel": "NONE",
+  "experienceType": "NONE",
+  "showServerWarning": true,
+  "hasUserBeenWarnedForNotUsingHoe": false
+}
