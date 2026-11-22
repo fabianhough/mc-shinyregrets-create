@@ -15,11 +15,13 @@ Get a small group of friends comfortable with Minecraft again, with modded Minec
 
 - **Server:** Docker, using [`itzg/minecraft-server`](https://hub.docker.com/r/itzg/minecraft-server), running the same `.mrpack` players install (one pack for client and server).
 - **Backups:** the [`itzg/mc-backup`](https://hub.docker.com/r/itzg/mc-backup) sidecar container alongside the server.
+- **Sample compose file:** [`deploy/docker-compose.yml`](deploy/docker-compose.yml). Replace the `<PLACEHOLDERS>` and create `secrets/rcon_password.txt` next to it before the first start (see the comments at the top of the file).
 
 ## Documentation
 
 - [Mod Choices](docs/mod-choices.md): why each mod is in the pack, what's approved for later, and what's under consideration. Kept up to date as the pack changes.
 - [Caveats and Known Issues](docs/caveats.md): quirks, duplicate files, metadata mismatches and other things to watch for, logged as we find them.
+- [Server Startup Log](docs/startup-log.md): what happens when each pack version is stood up on the server: what worked, harmless log noise, and issues worth acting on.
 
 ## Rules
 

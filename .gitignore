@@ -1,2 +1,6 @@
 # Exported .mrpack builds
 dist/
+
+# Server deployment secrets (e.g. RCON password)
+deploy/secrets/
+secrets/

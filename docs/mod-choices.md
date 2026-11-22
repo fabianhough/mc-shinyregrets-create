@@ -19,7 +19,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (56)
+## Chosen mods (54)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -62,14 +62,6 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 |---|---|---|
 | [Neruina](https://modrinth.com/mod/neruina) | both | When an entity, block entity or item crashes while ticking, Neruina suspends it instead of letting it crash and brick the world. A safety net for a server full of Create contraptions. Suspended things are announced in chat with options to teleport to them, retry or kill them. |
 | [spark](https://modrinth.com/mod/spark) | both | Performance profiler (`/spark profiler`, `/spark health`). Lightweight enough to leave installed; the tool for diagnosing lag on the server or a client. |
-
-### World generation
-| Mod | Side | Why |
-|---|---|---|
-| [Tectonic](https://modrinth.com/mod/tectonic) | both | Terrain overhaul: continent-scale landmasses and huge mountain ranges. Ships built-in Terralith compatibility. |
-| [Terralith](https://modrinth.com/mod/terralith) | both | 95+ new biomes and reworked vanilla biomes, using only vanilla blocks. Fully compatible with the mod version of Tectonic. |
-
-Both change world generation: they need a **new world**, and Terralith can't be removed from a world once it's generated. See [Caveats](caveats.md#worldgen-mods-are-permanent-per-world).
 
 ### Client polish and immersion
 | Mod | Side | Why |
@@ -144,7 +136,6 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [CreativeCore](https://modrinth.com/mod/creativecore) | both | AmbientSounds |
 | [Fzzy Config](https://modrinth.com/mod/fzzy-config) | both | Simply Swords, Simply Tooltips |
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
-| [Lithostitched](https://modrinth.com/mod/lithostitched) | both | Tectonic, Terralith |
 | [Balm](https://modrinth.com/mod/balm) | both | Default Options |
 | [Configurable](https://modrinth.com/mod/configurable) | both | Neruina |
 
@@ -154,7 +145,6 @@ Bundled inside other jars (no separate file):
 - **MezzConfig 0.6.6:** inside JEI, in addition to the standalone MezzConfig above. NeoForge loads the newest copy present.
 - **XaeroLib:** inside both Xaero's Minimap and Xaero's World Map.
 - **Wrench Wrapper:** inside Ok Zoomer.
-- **Apollib:** inside Tectonic (1.1.6) and Lithostitched (1.2.0). NeoForge loads the newer copy.
 - **Kuma API:** inside Balm.
 - **Cloth Config 15.0.128:** inside Freecam, in a folder NeoForge doesn't load bundled mods from. The standalone Cloth Config above covers it.
 
@@ -200,9 +190,6 @@ Kotlin for Forge
 Cloth Config ──────┬── BetterF3
 playerAnimator ────┴── Better Combat      (requires both)
 
-Lithostitched ──┬── Tectonic
-                └── Terralith
-
 Balm ────────── Default Options
 Configurable ── Neruina
 CreativeCore ── AmbientSounds
@@ -240,11 +227,11 @@ Already vetted as OK to add; not in the pack yet only because they aren't needed
 | Waystones | Pending the travel design. |
 | Reese's Sodium Options | A nicer video settings screen for Sodium; Sodium Extra lists it as an optional pairing. |
 | [Simple Voice Chat](https://modrinth.com/mod/simple-voice-chat) | Proximity voice chat. Has a stable NeoForge 1.21.1 build (newest is beta; pin the stable one). Pairs with Sound Physics Remastered. Needs a UDP port opened on the server (itzg: expose it in the container). |
-| [Chunky](https://modrinth.com/mod/chunky) | Pre-generates chunks so exploring doesn't make the server generate Tectonic's heavy terrain live. Server-side tool; run before players join. Note: structure mods added later won't appear in pre-generated chunks. |
+| [Chunky](https://modrinth.com/mod/chunky) | Pre-generates chunks so exploring doesn't make the server generate terrain live. Server-side tool; run before players join. Note: structure mods added later won't appear in pre-generated chunks. |
 
 ### Candidates for categories not yet filled
 Each has a NeoForge 1.21.1 build, either checked on its own page or present in ATM10's modlist. None are decided.
-- **Terrain and biomes:** Regions Unexplored, Oh The Biomes We've Gone (both biome mods; check Tectonic/Terralith compatibility first).
+- **Terrain and biomes:** Tectonic, Terralith, Regions Unexplored, Oh The Biomes We've Gone. Tectonic and Terralith were in the pack from 0.3.0 to 0.4.0 and were removed on 2026-11-21: vanilla world generation is enough of a novelty for now. Worldgen mods need deciding before the server's world is created (see [Caveats](caveats.md#worldgen-mods-need-deciding-before-the-server-world)).
 - **Structures and dungeons:** YUNG's suite (Better Dungeons, Better Mineshafts, Desert Temples, Strongholds, Nether Fortresses, End Island), When Dungeons Arise, Dungeon Crawl, Integrated Dungeons and Structures, Dungeons and Taverns, Repurposed Structures, Towns and Towers, Villages & Pillages, Deeper and Darker.
 - **Weapons and gear (no magic):** Artifacts, Relics.
 - **Mobs and bosses:** L_Ender's Cataclysm; Alex's Mobs (unofficial 1.21.1 port only).
