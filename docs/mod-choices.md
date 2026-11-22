@@ -19,7 +19,7 @@ Exact versions are pinned in each mod's metadata file under `mods/` and `shaderp
 
 ---
 
-## Chosen mods (58)
+## Chosen mods (61)
 
 ### Performance and rendering
 | Mod | Side | Why |
@@ -97,6 +97,9 @@ Shaders are bundled but chosen per player in Iris's shader menu. Modrinth publis
 | [TrashSlot](https://modrinth.com/mod/trashslot) | both | A draggable trash slot in inventory screens (toggle with T while in an inventory). Familiar from ATM. |
 | [Accelerated Decay](https://modrinth.com/mod/accelerated-decay) | both | Leaves decay quickly after a tree is cut, instead of lingering. Familiar from ATM. |
 | [Waystones](https://modrinth.com/mod/waystones) | both | Teleporting between waystones, which turned out to be crucial for travel in this pack (moved from approved-when-needed, 2026-11-22). Xaero's Minimap has built-in Waystones support (on by default), and Xaero's World Map reads those waypoints, so discovered waystones appear on both maps without a compat mod. The separate "Xaero's Minimap & World Map - Waystones Compatibility" mod was considered and left out: it would add a second waypoint per waystone. Village waystones only generate in newly generated chunks. |
+| [Supplementaries](https://modrinth.com/mod/supplementaries) | both | Vanilla-style blocks and items (jars, signposts, faucets, sconces, planters, ropes, sacks, a quiver, flax and more). Fits vanilla++. Requires Sodium 0.8.12 or newer (see [Caveats](caveats.md#supplementaries-requires-sodium-0812-or-newer)). Its worldgen (wild flax, road signs) only appears in newly generated chunks. |
+| [Amendments](https://modrinth.com/mod/amendments) | both | Tweaks to vanilla blocks (wall lanterns, better cauldrons, hanging pots and more). Same team as Supplementaries. |
+| [Comforts](https://modrinth.com/mod/comforts) | both | Sleeping bags (sleep anywhere without moving your spawn) and hammocks (skip the day). |
 
 ### Create: core and integrations
 | Mod | Side | Why |
@@ -142,6 +145,7 @@ Traced from Modrinth's dependency data (what packwiz uses) and cross-checked aga
 | [Simply Tooltips](https://modrinth.com/mod/simply-tooltips) | client | Simply Swords |
 | [Balm](https://modrinth.com/mod/balm) | both | Default Options, TrashSlot, Waystones |
 | [JamLib](https://modrinth.com/mod/jamlib) | both | RightClickHarvest |
+| [Moonlight Lib](https://modrinth.com/mod/moonlight) | both | Supplementaries, Amendments |
 | [Configurable](https://modrinth.com/mod/configurable) | both | Neruina |
 
 Bundled inside other jars (no separate file):
@@ -153,6 +157,9 @@ Bundled inside other jars (no separate file):
 - **Kuma API:** inside Balm.
 - **Cloth Config 15.0.128:** inside Freecam. NeoForge loads the newest copy present, so the standalone Cloth Config (15.0.140) is used.
 - **Jankson:** inside JamLib and Fzzy Config.
+- **MixinSquared, Sable Companion:** inside Supplementaries.
+- **SpectreLib:** inside Comforts.
+- **CodecUI:** inside Moonlight Lib.
 
 ### Dependency tree
 
@@ -201,13 +208,15 @@ Balm ──────────┬── Default Options
                └── Waystones
 JamLib ──────── RightClickHarvest     (both also require Architectury API)
 Architectury ── Accelerated Decay
+Moonlight Lib ─┬── Supplementaries
+               └── Amendments
 Configurable ── Neruina
 CreativeCore ── AmbientSounds
 Searchables ─── Controlling
 MezzConfig ──── JEI
 ```
 
-Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, spark, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
+Everything else (Lithium, FerriteCore, ModernFix, ImmediatelyFast, EntityCulling, Colorwheel Patcher, Clumps, Xaero's, Jade, AppleSkin, Mouse Tweaks, Freecam, Ok Zoomer, Sound Physics Remastered, 3D Skin Layers, spark, Carry On, Nature's Compass, GraveStone, Lootr, Farmer's Delight, Easy Villagers, Chimes, Comforts) stands alone. Create Stuff 'N Additions declares no dependency on Create at all, on Modrinth or in its jar; it works because Create is in the pack.
 
 ---
 

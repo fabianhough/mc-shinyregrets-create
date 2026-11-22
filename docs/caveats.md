@@ -13,6 +13,11 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 - **Detail:** `packwiz modrinth add` (and `packwiz update`) choose the most recently published version, betas included. Confirmed in packwiz's source (`modrinth/modrinth.go`, `getLatestVersion`).
 - **Action:** stable versions are pinned with `--version-id` when adding. **`packwiz update --all` would bump JEI and Enchantment Industry to betas**, so check channels after any update.
 
+### packwiz warns about Moonlight Lib's version numbers
+- **Seen:** 2026-11-22, adding Supplementaries.
+- **Detail:** packwiz printed "Modrinth versions for Moonlight Lib inconsistent between latest version number and newest release date (neoforge_1.21-2.18.11 vs 1.21.1-3.8.3)". Moonlight changed its version naming, so sorting by version number picks an old build. packwiz goes by release date, which picked the correct, newest stable 1.21.1-3.8.3.
+- **Action:** none. If `packwiz update` ever proposes an older Moonlight, this naming change is why; pin with `--version-id`.
+
 ### Some Modrinth environment values are unknown to packwiz
 - **Seen:** 2026-11-21.
 - **Detail:** Xaero's Minimap and World Map, CreativeCore and Sound Physics Remastered publish `client_only_server_optional`, and the shader packs publish `unknown`. packwiz doesn't recognise these and marks them `both` (client and server). FerriteCore's, Balm's and spark's `client_or_server` also becomes `both`, with a warning.
@@ -73,6 +78,13 @@ Working policy: we trust packwiz's dependency handling. If packwiz adds a file b
 - **Action:** none. Worth watching for an official 1.21.1 release, which would be the one to switch to. Bug reports go to the port, not the official project.
 
 ---
+
+## Version coupling between mods
+
+### Supplementaries requires Sodium 0.8.12 or newer
+- **Seen:** 2026-11-22.
+- **Detail:** Supplementaries 4.1.4 declares Sodium below `0.8.12-beta.1` incompatible: Sodium 0.8.12 changed its integration API and Supplementaries' fluid-rendering compat (`CompatSodiumFluidRendererMixin`, client-only, optional) targets the new one. The pack runs Sodium 0.8.13; all ten Sodium classes the mixin uses exist in it.
+- **Action:** never downgrade Sodium below 0.8.12 while Supplementaries is in the pack; the game would refuse to start and name the conflict.
 
 ## Metadata mismatches (Modrinth vs. the jar)
 
