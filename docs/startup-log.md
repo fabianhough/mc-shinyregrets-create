@@ -23,6 +23,7 @@ First stand-up of the pack on the server. Modpack resolved from Modrinth (`shiny
 - **RCON secret:** the backup container connected on the first attempt, with no permission errors reading `RCON_PASSWORD_FILE`.
 - **Backups:** backup on startup succeeded (`world-<timestamp>.tar.zst`), followed by pruning (14 days). Then `No players online, waiting 5m...`, so `PAUSE_IF_NO_PLAYERS` is working.
 - **Chat notices:** `[Rcon] Backing up the world...` and `[Rcon] Backup complete.` both appeared. The `[Not Secure]` tag is because RCON messages aren't signed by a player; it's cosmetic.
+- **Join test:** a player logged in from Prism, moved around, and ran a manual backup (`docker compose exec backups backup now`); the chat notices showed in game and no errors appeared in the `mc` log.
 
 ### Harmless noise
 | What | Count | Why it's harmless |
