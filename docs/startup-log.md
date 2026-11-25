@@ -13,6 +13,35 @@ Summarize the logs here; don't commit raw logs (they can contain player names an
 
 ---
 
+## 0.6.0 (2026-11-25)
+
+Upgrade from 0.5.0, on a new server machine (data copied over with rsync). Modpack resolved as `shinyregrets-create 0.6.0`.
+
+### Working as intended
+- **Upgrade:** itzg downloaded only the 9 new files (RightClickHarvest, JamLib, TrashSlot, Accelerated Decay, Waystones, Supplementaries, Amendments, Comforts, Moonlight Lib) and kept the rest. NeoForge unchanged at 21.1.267; Java 21.0.13 (Eclipse Adoptium), image tag `java21`.
+- **Startup:** `Done (0.943s)!` (existing world, spawn already generated); ModernFix reports 15.9 s total server load.
+- **New machine:** RCON secret, whitelist, Aikar's flags and the 8G heap all applied (`[init]` lines).
+- **Backups:** backup on startup succeeded (`world-<timestamp>.tar.zst`), followed by pruning; then `No players online, waiting 5m...`.
+- **Chat notices:** `[Rcon] Backing up the world...` and `[Rcon] Backup complete.` both appeared.
+- **New mods:** no errors from any of them.
+
+### Harmless noise
+Same as 0.5.0 (see below): 538 loot-table errors (Steam 'n' Rails 276, Design n' Decor 256, Create: Enchantment Industry 6), about 125 mixin warnings, the `AbstractClientPlayer` dist error, the Create Dragons Plus data-map warnings and the Create Cobblestone config warning. New in 0.6.0:
+
+| What | Why it's harmless |
+|---|---|
+| `[Lithium] Mod 'supplementaries' attempted to override option 'mixin' with an invalid value, ignoring` (also for `mixins` and `block`) | Supplementaries ships Lithium config overrides that this Lithium version doesn't recognize; Lithium ignores them. |
+| Refmap warnings for Comforts, TrashSlot and Waystones (`Reference map ... could not be read`) | Normal outside a development environment. |
+| Supplementaries: `Dye color white produced diffuse color -1 (white), this should never happen` | A cosmetic self-check in the mod. |
+
+The two Simply Swords compat-recipe errors from 0.5.0 didn't appear this time.
+
+### Worth noting
+- **Create Deco's `createdeco:placard` recipe** still fails to load (same as 0.5.0).
+- **Not visible in the log:** whether `/data/config/rightclickharvest.json5` has `requireHoe: true`. Check the file on the server.
+
+---
+
 ## 0.5.0 (2026-11-21)
 
 First stand-up of the pack on the server. Modpack resolved from Modrinth (`shinyregrets-create 0.5.0`).
